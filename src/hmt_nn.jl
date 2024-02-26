@@ -34,7 +34,7 @@ function calc_int_ps_fl(nm, nf, mat_v, ps_pot)
     return int_el
 end
 
-function generate_hmt_ops_fuzzy_nn(nm :: Int, nf :: Int, mat_v, ps_pot, mat_h)
+function generate_hmt_ops_fuzzy_nn(nm :: Int, nf :: Int, mat_v, ps_pot, mat_h ; m0 = 0)
     os = OpSum()
     int_el = calc_int_ps_fl(nm, nf, mat_v, ps_pot)
     no = nm * nf
@@ -46,7 +46,7 @@ function generate_hmt_ops_fuzzy_nn(nm :: Int, nf :: Int, mat_v, ps_pot, mat_h)
             o2 = (m2 - 1) * nf + f2
             if (abs(mat_h[f1, f2]) < 1E-8) continue end 
             val = mat_h[f1, f2]
-            os += val, "Cdag", o1, "C", o2
+            os += val, "Cdag", o1 + m0, "C", o2 + m0
         end
     end
     for o1 = 1 : no
@@ -65,7 +65,7 @@ function generate_hmt_ops_fuzzy_nn(nm :: Int, nf :: Int, mat_v, ps_pot, mat_h)
                     if (o3 <= o4) continue end
                     if (abs(int_el[o1, o2, o3, f4]) < 1E-8 && abs(int_el[o2, o1, o3, f4]) < 1E-8) continue end
                     val = 2. * (int_el[o1, o2, o3, f4] - int_el[o2, o1, o3, f4])
-                    os += val, "Cdag", o1, "Cdag", o2, "C", o3, "C", o4
+                    os += val, "Cdag", o1 + m0, "Cdag", o2 + m0, "C", o3 + m0, "C", o4 + m0
                 end
             end
         end
