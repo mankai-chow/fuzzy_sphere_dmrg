@@ -8,17 +8,17 @@ function generate_hmt_ops_fuzzy_o3_kondo(nm, nf, int_def, os0)
     os +=  .5 * int_def, "N", 1, "N", 4
     os += -.5 * int_def, "N", 1, "N", 5
     os +=  .5 * int_def, "Cdag", 1, "Cdag", 3, "C", 2  # S+ S- / 2
-    #os +=  .5 * int_def, "Cdag", 1, "Cdag", 5, "C", 4
-    #os +=  .5 * int_def, "C", 1, "Cdag", 2, "C", 3  # S- S+ / 2
-    #os +=  .5 * int_def, "C", 1, "Cdag", 4, "C", 5
+    os +=  .5 * int_def, "Cdag", 1, "Cdag", 5, "C", 4
+    os +=  .5 * int_def, "C", 1, "Cdag", 2, "C", 3  # S- S+ / 2
+    os +=  .5 * int_def, "C", 1, "Cdag", 4, "C", 5
     os +=  .5 * int_def, "N", no + 2, "N", no - 2 # Sz Sz
     os += -.5 * int_def, "N", no + 2, "N", no - 1
     os +=  .5 * int_def, "N", no + 2, "N", no
     os += -.5 * int_def, "N", no + 2, "N", no + 1
-    #os +=  .5 * int_def, "Cdag", no + 2, "Cdag", no - 1, "C", no - 2  # S+ S- / 2
-    #os +=  .5 * int_def, "Cdag", no + 2, "Cdag", no + 1, "C", no
-    #os +=  .5 * int_def, "C", no + 2, "Cdag", no - 2, "C", no - 1  # S- S+ / 2
-    #os +=  .5 * int_def, "C", no + 2, "Cdag", no, "C", no + 1
+    os +=  .5 * int_def, "Cdag", no + 2, "Cdag", no - 1, "C", no - 2  # S+ S- / 2
+    os +=  .5 * int_def, "Cdag", no + 2, "Cdag", no + 1, "C", no
+    os +=  .5 * int_def, "C", no + 2, "Cdag", no - 2, "C", no - 1  # S- S+ / 2
+    os +=  .5 * int_def, "C", no + 2, "Cdag", no, "C", no + 1
     return os
 end
 
