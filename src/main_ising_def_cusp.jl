@@ -19,9 +19,9 @@ nm = parse(Int, ARGS[1])
 nf = 2
 no = nm * nf
 nb = div(nm, 2) * nf
-theta = parse(Float64, ARGS[2])
-fld_h = parse(Float64, ARGS[3])
+th = parse(Float64, ARGS[2])
+h = parse(Float64, ARGS[3])
 
-hmt, sites = generate_hmt_mpo_fuzzy_ising_def_cusp("th$(theta)_h$fld_h", nm, nf ; angle_def = [ theta*pi/2 0 ; theta*pi/2 pi ], fld_h)
+hmt, sites = generate_hmt_mpo_fuzzy_ising_def_cusp("th$(th)_h$h", nm, nf ; angle_def = [ th*pi/2 0 ; th*pi/2 pi ], fld_h = h / nm)
 st0 = generate_init_st_ising(no, sites)
 Eg, stg = sweep_full("g_th$(theta)_h$fld_h", hmt, st0, nm, nb)
