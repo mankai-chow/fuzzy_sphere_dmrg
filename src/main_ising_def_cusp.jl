@@ -20,7 +20,8 @@ nf = 2
 no = nm * nf
 nb = div(nm, 2) * nf
 theta = parse(Float64, ARGS[2])
+fld_h = parse(Float64, ARGS[3])
 
-hmt, sites = generate_hmt_mpo_fuzzy_ising_def_cusp("th$theta", nm, nf ; angle_def = [ 0 0 ; theta*pi 0 ])
+hmt, sites = generate_hmt_mpo_fuzzy_ising_def_cusp("th$(theta)_h$fld_h", nm, nf ; angle_def = [ theta*pi/2 0 ; theta*pi/2 pi ], fld_h)
 st0 = generate_init_st_ising(no, sites)
-Eg, stg = sweep_full("g_th$theta", hmt, st0, nm, nb)
+Eg, stg = sweep_full("g_th$(theta)_h$fld_h", hmt, st0, nm, nb)
