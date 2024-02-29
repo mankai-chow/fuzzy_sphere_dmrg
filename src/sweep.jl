@@ -15,7 +15,20 @@ function sweep_one(id, hmt, st0, nm, nb, dim1 ;
     if (isempty(proj))
         E1, st1 = dmrg(hmt, st0 ; nsweeps, maxdim, cutoff, noise, observer = EntanglementObserver(nb, e_tol), outputlevel = 1)  # ground state
     else
-        E1, st1 = dmrg(hmt, proj, st0 ; nsweeps, maxdim, cutoff, noise, observer = EntanglementObserver(nb, e_tol), outputlevel = 1, weight = nm)  # ground state
+        fs = [ h5open("st$(fi)_n$(nm).h5", "r") for fi in proj ]
+        grs = [ "st_d$(dim1)" for fi in proj ]
+        for i = 1 : length(proj)
+            if (haskey(fs[i], grs[i])) continue end
+            grs[i] = "st_fin"
+        end
+        sts = [ read(fs[i], grs[i], MPS) for i = 1 : length(proj) ]
+        for fi in fs
+            close(fi) 
+        end 
+        # strategy for reading excited states : 
+        # first try to read the same bond dimension
+        # if not exist, read the final
+        E1, st1 = dmrg(hmt, sts, st0 ; nsweeps, maxdim, cutoff, noise, observer = EntanglementObserver(nb, e_tol), outputlevel = 1, weight = nm)  # ground state
     end
 
     f = h5open("st$(id)_n$(nm).h5","cw")

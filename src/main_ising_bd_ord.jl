@@ -27,7 +27,7 @@ st0 = generate_init_st_ising(no, sites)
 st1 = generate_init_st_ising(no, sites ; z2 = -1)
 
 Eg, stg = sweep_full("g", hmt, st0, nm, nb)
-Ed, std = sweep_full("d", hmt, st0, nm, nb ; proj = [stg])
+Ed, std = sweep_full("d", hmt, st0, nm, nb ; proj = ["g"])
 Eo, sto = sweep_full("o", hmt, st1, nm, nb)
 
 if (!isfile("overlap_n$nm.dat"))

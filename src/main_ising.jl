@@ -26,5 +26,5 @@ st0 = generate_init_st_ising(no, sites)
 st1 = generate_init_st_ising(no, sites ; z2 = -1)
 
 Eg, stg = sweep_full("g", hmt, st0, nm, nb)
-Ee, ste = sweep_full("e", hmt, st0, nm, nb ; proj = [stg])
+Ee, ste = sweep_full("e", hmt, st0, nm, nb ; proj = ["g"])
 Es, sts = sweep_full("s", hmt, st1, nm, nb)

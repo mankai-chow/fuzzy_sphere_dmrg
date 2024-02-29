@@ -26,7 +26,7 @@ hmt, sites = generate_hmt_mpo_fuzzy_ising_bd_ex(nm, nm0, nf)
 st0 = generate_init_st_ising(no, sites)
 
 Eg, stg = sweep_full("g", hmt, st0, nm, nb)
-Ed, std = sweep_full("d", hmt, st0, nm, nb ; proj = [stg])
+Ed, std = sweep_full("d", hmt, st0, nm, nb ; proj = ["g"])
 
 if (!isfile("overlap_n$nm.dat"))
     inner_product = zeros(4, nm)
