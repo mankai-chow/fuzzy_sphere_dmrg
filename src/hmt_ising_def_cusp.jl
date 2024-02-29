@@ -1,6 +1,9 @@
+using SpecialFunctions
+
 function mono_harm_ss(nm :: Int, m1 :: Int, theta, phi) 
     # nm = 2s + 1 ; m1 = 1 -- nm ; phi = 0 
-    return sqrt(factorial(nm) / (4 * pi * factorial(m1 - 1) * factorial(nm - m1))) * cos(theta / 2) ^ (m1 - 1) * sin(theta / 2) ^ (nm - m1) * exp((m1 - 1) * im * phi)
+    logfac = logfactorial(nm) - logfactorial(m1 - 1) - logfactorial(nm - m1)
+    return exp(logfac * .5) / sqrt(4 * pi) * cos(theta / 2) ^ (m1 - 1) * sin(theta / 2) ^ (nm - m1) * exp((m1 - 1) * im * phi)
 end 
 
 function generate_hmt_ops_fuzzy_ising_def_cusp(nm :: Int, nf :: Int ; 
