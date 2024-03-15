@@ -41,7 +41,7 @@ end
 
 function sweep_full(id, hmt, st00, nm, nb ; 
         dim_list = [1000,2000,3000,4000,5000,6000], proj = [], e_tol = 1E-6, e_tol1 = 1E-7, 
-        maxdim0 = [10,20,50,100,200,500], noise0 = [1E-4,3E-5,1E-5,3E-6,1E-6,3E-7], noise = [1E-6,1E-7,0], nsweeps = 10)
+        maxdim0 = [10,20,50,100,200,500], noise0 = [1E-4,3E-5,1E-5,3E-6,1E-6,3E-7], noise = [1E-6,2E-7,5E-8,1E-8,0], nsweeps = 10)
     if (isfile("st$(id)_n$(nm).h5"))
         f = h5open("st$(id)_n$(nm).h5","r")
         if (haskey(f, "st_fin"))
