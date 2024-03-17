@@ -21,7 +21,7 @@ function generate_hmt_ops_fuzzy_spn(nm :: Int, nf :: Int ;
                     if (f3 == f4 && m3 >= m4) continue end
                     o4 = (m4 - 1) * nf + f4 + 1
                     if (!(f1 == f4 && f2 == f3)) 
-                        if (!(f1 - f2 == nf / 2 && f4 - f3 == nf / 2)) continue end
+                        if (!(f1 & ~f2 == 1 && f4 & ~f3 == 1)) continue end
                     end
                     val = 0
                     if (f1 == f2)
@@ -30,7 +30,7 @@ function generate_hmt_ops_fuzzy_spn(nm :: Int, nf :: Int ;
                         if (f1 == f4 && f2 == f3) 
                             val = val + (int_el_u[m1, m2, m3]) * 2. 
                         end
-                        if (f1 - f2 == nf / 2 && f4 - f3 == nf / 2) 
+                        if (f1 & ~f2 == 1 && f4 & ~f3 == 1) 
                             val = val - int_el_v[m1, m2, m3] 
                         end
                     end

@@ -3,7 +3,7 @@ function ITensors.space( :: SiteType"Fermion" ; o1 :: Int = 0,
     qnname_sz = "Sz", qnname_nf = "Nf", qnname_lz = "Lz", fac_sz = [ 10 ^ f for f :: Int = 0 : nf / 2 - 1])
     m1 = div(o1 - 1, nf) + 1
     f1 = mod(o1 - 1, nf)
-    sz1 :: Int = (f1 < nf / 2 ? 1 : -1) * fac_sz[Int(1 + mod(f1, nf / 2))]
+    sz1 :: Int = (iseven(f1) ? 1 : -1) * fac_sz[1 + div(f1, 2)]
     if (conserve_sz && conserve_lz)
         return [
             QN((qnname_nf, 0, -1), (qnname_lz,  0), (qnname_sz,      0)) => 1
